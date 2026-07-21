@@ -1,4 +1,4 @@
-# Gerador de Currículo
+# Vitae - Gerador de Currículo
 
 Gerador de currículo com preview ao vivo e exportação em PDF, em estilo minimalista
 tipográfico: muito espaço em branco, tipografia como protagonista, sem cores
@@ -11,7 +11,7 @@ tempo real, um currículo de uma página se montando à direita, pronto para bai
 ## Deploy
 
 <!-- TODO: substituir pelo link real após o deploy na Vercel -->
-🔗 _(link do deploy na Vercel aqui)_
+🔗 _https://vitae-gerador-curriculo.vercel.app/_
 
 ## Stack
 
