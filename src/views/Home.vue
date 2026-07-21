@@ -5,6 +5,7 @@ import FormExperiencias from '../components/FormExperiencias.vue'
 import FormFormacao from '../components/FormFormacao.vue'
 import FormHabilidades from '../components/FormHabilidades.vue'
 import PreviewCurriculo from '../components/PreviewCurriculo.vue'
+import BotaoExportar from '../components/BotaoExportar.vue'
 </script>
 
 <template>
@@ -17,6 +18,9 @@ import PreviewCurriculo from '../components/PreviewCurriculo.vue'
       <FormHabilidades />
     </section>
     <section class="preview-column">
+      <div class="preview-toolbar">
+        <BotaoExportar />
+      </div>
       <PreviewCurriculo />
     </section>
   </div>
@@ -39,5 +43,13 @@ import PreviewCurriculo from '../components/PreviewCurriculo.vue'
   padding: 48px;
   background: var(--bg);
   overflow-y: auto;
+}
+
+.preview-toolbar {
+  width: 210mm;
+  max-width: 100%;
+  margin: 0 auto 16px;
+  display: flex;
+  justify-content: flex-end;
 }
 </style>

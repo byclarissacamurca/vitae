@@ -11,7 +11,7 @@ const contatos = computed(() => {
 </script>
 
 <template>
-  <article class="folha">
+  <article id="folha-curriculo" class="folha">
     <header class="cabecalho">
       <h1>{{ store.dadosPessoais.nome || 'Seu nome' }}</h1>
       <p v-if="store.dadosPessoais.titulo" class="titulo">{{ store.dadosPessoais.titulo }}</p>
