@@ -56,6 +56,7 @@ const contatos = computed(() => {
 <style scoped>
 .folha {
   width: 210mm;
+  max-width: 100%;
   min-height: 297mm;
   margin: 0 auto;
   box-sizing: border-box;
