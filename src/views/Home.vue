@@ -4,6 +4,7 @@ import FormResumo from '../components/FormResumo.vue'
 import FormExperiencias from '../components/FormExperiencias.vue'
 import FormFormacao from '../components/FormFormacao.vue'
 import FormHabilidades from '../components/FormHabilidades.vue'
+import PreviewCurriculo from '../components/PreviewCurriculo.vue'
 </script>
 
 <template>
@@ -15,7 +16,9 @@ import FormHabilidades from '../components/FormHabilidades.vue'
       <FormFormacao />
       <FormHabilidades />
     </section>
-    <section class="preview-column"></section>
+    <section class="preview-column">
+      <PreviewCurriculo />
+    </section>
   </div>
 </template>
 
@@ -34,6 +37,7 @@ import FormHabilidades from '../components/FormHabilidades.vue'
 .preview-column {
   flex: 1 1 55%;
   padding: 48px;
-  background: var(--surface);
+  background: var(--bg);
+  overflow-y: auto;
 }
 </style>
