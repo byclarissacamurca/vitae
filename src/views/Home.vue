@@ -1,8 +1,20 @@
-<script setup></script>
+<script setup>
+import FormDadosPessoais from '../components/FormDadosPessoais.vue'
+import FormResumo from '../components/FormResumo.vue'
+import FormExperiencias from '../components/FormExperiencias.vue'
+import FormFormacao from '../components/FormFormacao.vue'
+import FormHabilidades from '../components/FormHabilidades.vue'
+</script>
 
 <template>
   <div class="home">
-    <section class="form-column"></section>
+    <section class="form-column">
+      <FormDadosPessoais />
+      <FormResumo />
+      <FormExperiencias />
+      <FormFormacao />
+      <FormHabilidades />
+    </section>
     <section class="preview-column"></section>
   </div>
 </template>
