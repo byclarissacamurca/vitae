@@ -139,3 +139,11 @@ button {
 .btn-text:hover {
   color: var(--text);
 }
+
+.btn:disabled,
+.btn-text:disabled {
+  cursor: not-allowed;
+  color: var(--border);
+  border-color: var(--border);
+  text-decoration: none;
+}

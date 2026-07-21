@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.112.4",
     "@vueuse/core": "^14.3.0",
     "html2pdf.js": "^0.14.0",
     "pinia": "^4.0.2",

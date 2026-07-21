@@ -32,6 +32,8 @@ tempo real, um currículo de uma página se montando à direita, pronto para bai
 - Persistência automática no localStorage — recarregar a página não perde os dados
 - Responsivo: colunas lado a lado no desktop (preview fixo ao rolar o formulário) e
   alternador "Editar / Visualizar" no mobile
+- "Melhorar resumo com IA": reescreve o resumo profissional via Claude, chamado
+  por uma função serverless (a chave de API nunca fica no front-end)
 
 ## Como rodar localmente
 
@@ -48,3 +50,20 @@ Para gerar a versão de produção:
 npm run build
 npm run preview
 ```
+
+## Configurando o "Melhorar resumo com IA"
+
+O botão ao lado do campo de resumo chama `api/melhorar.js`, uma função serverless
+que usa o [SDK oficial da Anthropic](https://github.com/anthropics/anthropic-sdk-typescript)
+para reescrever o texto. A chave de API **nunca** fica no front-end — ela só existe
+como variável de ambiente lida pela função no servidor.
+
+1. Gere uma chave em [console.anthropic.com](https://console.anthropic.com/settings/keys).
+2. No painel da Vercel: **Project Settings → Environment Variables** e adicione
+   `ANTHROPIC_API_KEY` com o valor da chave.
+3. Para testar localmente, use a [Vercel CLI](https://vercel.com/docs/cli) (o
+   `npm run dev` do Vite não executa funções serverless): copie `.env.example`
+   para `.env`, preencha a chave e rode `vercel dev` em vez de `npm run dev`.
+
+Sem a variável de ambiente configurada, o botão mostra uma mensagem de erro ao
+tentar melhorar o resumo — o restante do app funciona normalmente.
