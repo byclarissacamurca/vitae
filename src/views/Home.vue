@@ -35,7 +35,6 @@ const abaMobile = ref('editar')
     </div>
 
     <section class="form-column" :class="{ 'oculto-mobile': abaMobile !== 'editar' }">
-      <PainelPersonalizacao />
       <p v-if="store.excedeUmaPagina" class="aviso-pagina">
         Seu currículo passou de 1 página. Currículos de uma página costumam ser lidos
         até o fim com mais frequência — considere cortar algum trecho.
@@ -45,6 +44,7 @@ const abaMobile = ref('editar')
       <FormExperiencias />
       <FormFormacao />
       <FormHabilidades />
+      <PainelPersonalizacao />
     </section>
 
     <section class="preview-column" :class="{ 'oculto-mobile': abaMobile !== 'visualizar' }">

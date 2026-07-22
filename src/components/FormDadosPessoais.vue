@@ -1,12 +1,12 @@
 <script setup>
 import { useCurriculoStore } from '../stores/curriculo'
+import BlocoFormulario from './BlocoFormulario.vue'
 
 const store = useCurriculoStore()
 </script>
 
 <template>
-  <div>
-    <h2 class="section-title">Dados pessoais</h2>
+  <BlocoFormulario titulo="Dados Pessoais" chave="dados-pessoais">
     <div class="field">
       <label for="nome">Nome</label>
       <input id="nome" v-model="store.dadosPessoais.nome" type="text" />
@@ -35,5 +35,5 @@ const store = useCurriculoStore()
       <label for="github">GitHub</label>
       <input id="github" v-model="store.dadosPessoais.github" type="text" />
     </div>
-  </div>
+  </BlocoFormulario>
 </template>

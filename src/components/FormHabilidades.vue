@@ -1,9 +1,15 @@
 <script setup>
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import { useCurriculoStore } from '../stores/curriculo'
+import BlocoFormulario from './BlocoFormulario.vue'
 
 const store = useCurriculoStore()
 const novosItens = ref({})
+
+const contador = computed(() => {
+  const n = store.habilidades.reduce((soma, categoria) => soma + categoria.itens.length, 0)
+  return n ? `${n} ${n === 1 ? 'item' : 'itens'}` : ''
+})
 
 function adicionarItem(indiceCategoria) {
   const valor = novosItens.value[indiceCategoria] || ''
@@ -13,18 +19,16 @@ function adicionarItem(indiceCategoria) {
 </script>
 
 <template>
-  <div>
-    <h2 class="section-title">Habilidades</h2>
-
-    <div v-for="(categoria, indiceCategoria) in store.habilidades" :key="indiceCategoria" class="categoria">
-      <div class="categoria-cabecalho">
+  <BlocoFormulario titulo="Habilidades" :contador="contador" chave="habilidades">
+    <div v-for="(categoria, indiceCategoria) in store.habilidades" :key="indiceCategoria" class="sub-bloco">
+      <div class="sub-bloco-cabecalho">
         <input
           v-model="categoria.categoria"
           type="text"
           class="categoria-nome"
           placeholder="Categoria (opcional, ex: Front-end)"
         />
-        <div class="categoria-acoes">
+        <div class="sub-bloco-acoes">
           <button
             type="button"
             class="btn-icone"
@@ -81,23 +85,10 @@ function adicionarItem(indiceCategoria) {
     <button type="button" class="btn" @click="store.adicionarCategoriaHabilidade()">
       + Adicionar categoria
     </button>
-  </div>
+  </BlocoFormulario>
 </template>
 
 <style scoped>
-.categoria {
-  padding-bottom: 20px;
-  margin-bottom: 20px;
-  border-bottom: 1px solid var(--borda);
-}
-
-.categoria-cabecalho {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 16px;
-}
-
 .categoria-nome {
   flex: 1;
   font: inherit;
@@ -108,28 +99,6 @@ function adicionarItem(indiceCategoria) {
   border: none;
   border-bottom: 1px solid var(--borda);
   padding: 4px 0;
-}
-
-.categoria-acoes {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.btn-icone {
-  font: inherit;
-  font-size: 13px;
-  color: var(--texto-suave);
-  background: none;
-  border: 1px solid var(--borda);
-  border-radius: 8px;
-  padding: 2px 8px;
-  cursor: pointer;
-}
-
-.btn-icone:disabled {
-  opacity: 0.4;
-  cursor: not-allowed;
 }
 
 .tags {

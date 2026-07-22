@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from 'vue'
 import { useCurriculoStore } from '../stores/curriculo'
+import BlocoFormulario from './BlocoFormulario.vue'
 
 const store = useCurriculoStore()
 const carregando = ref(false)
@@ -35,8 +36,7 @@ async function melhorarResumo() {
 </script>
 
 <template>
-  <div>
-    <h2 class="section-title">Resumo</h2>
+  <BlocoFormulario titulo="Resumo" chave="resumo">
     <div class="field">
       <label for="resumo">Resumo profissional</label>
       <textarea id="resumo" v-model="store.resumo" rows="5"></textarea>
@@ -50,7 +50,7 @@ async function melhorarResumo() {
       {{ carregando ? 'Melhorando...' : 'Melhorar resumo com IA' }}
     </button>
     <p v-if="erro" class="erro-ia">{{ erro }}</p>
-  </div>
+  </BlocoFormulario>
 </template>
 
 <style scoped>

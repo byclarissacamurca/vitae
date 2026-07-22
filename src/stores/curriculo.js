@@ -36,6 +36,12 @@ export const useCurriculoStore = defineStore('curriculo', () => {
     espacamento: 'normal',
   })
 
+  function moverItem(lista, indice, direcao) {
+    const novoIndice = indice + direcao
+    if (novoIndice < 0 || novoIndice >= lista.length) return
+    ;[lista[indice], lista[novoIndice]] = [lista[novoIndice], lista[indice]]
+  }
+
   function atualizarDadosPessoais(dados) {
     Object.assign(dadosPessoais.value, dados)
   }
@@ -52,12 +58,20 @@ export const useCurriculoStore = defineStore('curriculo', () => {
     experiencias.value.splice(index, 1)
   }
 
+  function moverExperiencia(indice, direcao) {
+    moverItem(experiencias.value, indice, direcao)
+  }
+
   function adicionarFormacao() {
     formacao.value.push({ curso: '', instituicao: '', periodo: '' })
   }
 
   function removerFormacao(index) {
     formacao.value.splice(index, 1)
+  }
+
+  function moverFormacao(indice, direcao) {
+    moverItem(formacao.value, indice, direcao)
   }
 
   function adicionarCategoriaHabilidade() {
@@ -72,10 +86,7 @@ export const useCurriculoStore = defineStore('curriculo', () => {
   }
 
   function moverCategoriaHabilidade(indiceCategoria, direcao) {
-    const novoIndice = indiceCategoria + direcao
-    if (novoIndice < 0 || novoIndice >= habilidades.value.length) return
-    const lista = habilidades.value
-    ;[lista[indiceCategoria], lista[novoIndice]] = [lista[novoIndice], lista[indiceCategoria]]
+    moverItem(habilidades.value, indiceCategoria, direcao)
   }
 
   function adicionarItemHabilidade(indiceCategoria, item) {
@@ -106,8 +117,10 @@ export const useCurriculoStore = defineStore('curriculo', () => {
     atualizarResumo,
     adicionarExperiencia,
     removerExperiencia,
+    moverExperiencia,
     adicionarFormacao,
     removerFormacao,
+    moverFormacao,
     adicionarCategoriaHabilidade,
     removerCategoriaHabilidade,
     moverCategoriaHabilidade,

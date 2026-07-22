@@ -78,21 +78,6 @@ button {
   min-height: 100svh;
 }
 
-.section-title {
-  font-size: 13px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--texto-suave);
-  margin: 0 0 24px;
-  padding-top: 32px;
-  border-top: 1px solid var(--borda);
-}
-
-.section-title:first-child {
-  padding-top: 0;
-  border-top: none;
-}
-
 .field {
   display: flex;
   flex-direction: column;
@@ -128,10 +113,45 @@ button {
   min-height: 88px;
 }
 
-.list-item {
-  padding-bottom: 20px;
-  margin-bottom: 24px;
-  border-bottom: 1px solid var(--borda);
+.sub-bloco {
+  border: 1px solid var(--borda);
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+.sub-bloco:last-child {
+  margin-bottom: 0;
+}
+
+.sub-bloco-cabecalho {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.sub-bloco-acoes {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-icone {
+  font: inherit;
+  font-size: 13px;
+  color: var(--texto-suave);
+  background: none;
+  border: 1px solid var(--borda);
+  border-radius: 8px;
+  padding: 2px 8px;
+  cursor: pointer;
+}
+
+.btn-icone:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
 }
 
 .btn {

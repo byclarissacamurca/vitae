@@ -1,6 +1,7 @@
 <script setup>
 import { useCurriculoStore } from '../stores/curriculo'
 import { FONTES } from '../utils/formatarCurriculo'
+import BlocoFormulario from './BlocoFormulario.vue'
 
 const store = useCurriculoStore()
 
@@ -33,136 +34,101 @@ const EXPLICACAO_MODO = {
 </script>
 
 <template>
-  <details class="painel">
-    <summary>Personalizar currículo</summary>
-    <div class="painel-conteudo">
-      <div class="painel-grupo">
-        <span class="painel-rotulo">Modo</span>
-        <div class="opcoes-segmentadas">
-          <button
-            type="button"
-            :class="{ ativo: store.preferencias.modo === 'ats' }"
-            @click="store.preferencias.modo = 'ats'"
-          >
-            ATS
-          </button>
-          <button
-            type="button"
-            :class="{ ativo: store.preferencias.modo === 'visual' }"
-            @click="store.preferencias.modo = 'visual'"
-          >
-            Visual
-          </button>
-        </div>
-        <p class="painel-ajuda">{{ EXPLICACAO_MODO[store.preferencias.modo] }}</p>
+  <BlocoFormulario titulo="Personalização" chave="personalizacao">
+    <div class="painel-grupo">
+      <span class="painel-rotulo">Modo</span>
+      <div class="opcoes-segmentadas">
+        <button
+          type="button"
+          :class="{ ativo: store.preferencias.modo === 'ats' }"
+          @click="store.preferencias.modo = 'ats'"
+        >
+          ATS
+        </button>
+        <button
+          type="button"
+          :class="{ ativo: store.preferencias.modo === 'visual' }"
+          @click="store.preferencias.modo = 'visual'"
+        >
+          Visual
+        </button>
       </div>
+      <p class="painel-ajuda">{{ EXPLICACAO_MODO[store.preferencias.modo] }}</p>
+    </div>
 
-      <div class="painel-grupo">
-        <label for="fonte" class="painel-rotulo">Fonte</label>
-        <select id="fonte" v-model="store.preferencias.fonte">
-          <option v-for="fonte in FONTES" :key="fonte.nome" :value="fonte.valor">
-            {{ fonte.nome }}
-          </option>
-        </select>
-      </div>
+    <div class="painel-grupo">
+      <label for="fonte" class="painel-rotulo">Fonte</label>
+      <select id="fonte" v-model="store.preferencias.fonte">
+        <option v-for="fonte in FONTES" :key="fonte.nome" :value="fonte.valor">
+          {{ fonte.nome }}
+        </option>
+      </select>
+    </div>
 
-      <div class="painel-grupo">
-        <span class="painel-rotulo">Cor de destaque</span>
-        <div class="paleta-cores">
-          <button
-            v-for="cor in PALETA_CORES"
-            :key="cor.valor"
-            type="button"
-            class="swatch"
-            :class="{ ativo: store.preferencias.corDestaque === cor.valor }"
-            :style="{ background: cor.valor }"
-            :title="cor.nome"
-            @click="store.preferencias.corDestaque = cor.valor"
-          ></button>
-          <input
-            v-model="store.preferencias.corDestaque"
-            type="color"
-            class="swatch-livre"
-            title="Cor personalizada"
-          />
-        </div>
-      </div>
-
-      <div class="painel-grupo">
-        <span class="painel-rotulo">Tamanho da fonte</span>
-        <div class="opcoes-segmentadas">
-          <button
-            v-for="opcao in OPCOES_TAMANHO"
-            :key="opcao.valor"
-            type="button"
-            :class="{ ativo: store.preferencias.tamanhoFonte === opcao.valor }"
-            @click="store.preferencias.tamanhoFonte = opcao.valor"
-          >
-            {{ opcao.rotulo }}
-          </button>
-        </div>
-      </div>
-
-      <div class="painel-grupo">
-        <span class="painel-rotulo">Espaçamento</span>
-        <div class="opcoes-segmentadas">
-          <button
-            v-for="opcao in OPCOES_ESPACAMENTO"
-            :key="opcao.valor"
-            type="button"
-            :class="{ ativo: store.preferencias.espacamento === opcao.valor }"
-            @click="store.preferencias.espacamento = opcao.valor"
-          >
-            {{ opcao.rotulo }}
-          </button>
-        </div>
+    <div class="painel-grupo">
+      <span class="painel-rotulo">Cor de destaque</span>
+      <div class="paleta-cores">
+        <button
+          v-for="cor in PALETA_CORES"
+          :key="cor.valor"
+          type="button"
+          class="swatch"
+          :class="{ ativo: store.preferencias.corDestaque === cor.valor }"
+          :style="{ background: cor.valor }"
+          :title="cor.nome"
+          @click="store.preferencias.corDestaque = cor.valor"
+        ></button>
+        <input
+          v-model="store.preferencias.corDestaque"
+          type="color"
+          class="swatch-livre"
+          title="Cor personalizada"
+        />
       </div>
     </div>
-  </details>
+
+    <div class="painel-grupo">
+      <span class="painel-rotulo">Tamanho da fonte</span>
+      <div class="opcoes-segmentadas">
+        <button
+          v-for="opcao in OPCOES_TAMANHO"
+          :key="opcao.valor"
+          type="button"
+          :class="{ ativo: store.preferencias.tamanhoFonte === opcao.valor }"
+          @click="store.preferencias.tamanhoFonte = opcao.valor"
+        >
+          {{ opcao.rotulo }}
+        </button>
+      </div>
+    </div>
+
+    <div class="painel-grupo">
+      <span class="painel-rotulo">Espaçamento</span>
+      <div class="opcoes-segmentadas">
+        <button
+          v-for="opcao in OPCOES_ESPACAMENTO"
+          :key="opcao.valor"
+          type="button"
+          :class="{ ativo: store.preferencias.espacamento === opcao.valor }"
+          @click="store.preferencias.espacamento = opcao.valor"
+        >
+          {{ opcao.rotulo }}
+        </button>
+      </div>
+    </div>
+  </BlocoFormulario>
 </template>
 
 <style scoped>
-.painel {
-  margin-bottom: 24px;
-  border: 1px solid var(--borda);
-  border-radius: 10px;
-  overflow: hidden;
-}
-
-.painel summary {
-  cursor: pointer;
-  padding: 12px 16px;
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--texto);
-  list-style: none;
-}
-
-.painel summary::-webkit-details-marker {
-  display: none;
-}
-
-.painel summary::before {
-  content: '+ ';
-  color: var(--texto-suave);
-}
-
-.painel[open] summary::before {
-  content: '– ';
-}
-
-.painel-conteudo {
-  padding: 4px 16px 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  border-top: 1px solid var(--borda);
-}
-
 .painel-grupo {
   display: flex;
   flex-direction: column;
   gap: 8px;
+  margin-bottom: 20px;
+}
+
+.painel-grupo:last-child {
+  margin-bottom: 0;
 }
 
 .painel-rotulo {
@@ -179,7 +145,7 @@ const EXPLICACAO_MODO = {
   color: var(--texto-suave);
 }
 
-.painel-conteudo select {
+select {
   font: inherit;
   font-size: 14px;
   color: var(--texto);
