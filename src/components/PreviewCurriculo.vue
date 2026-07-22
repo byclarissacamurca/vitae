@@ -42,7 +42,6 @@ onBeforeUnmount(() => {
 
 <template>
   <article
-    id="folha-curriculo"
     ref="folhaRef"
     class="folha"
     :class="{ 'modo-visual': store.preferencias.modo === 'visual' }"

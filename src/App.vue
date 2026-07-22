@@ -1,10 +1,11 @@
 <script setup>
 import Home from './views/Home.vue'
+import LogoVitae from './components/LogoVitae.vue'
 </script>
 
 <template>
   <header class="app-header">
-    <span class="app-nome">Gerador de Currículo</span>
+    <LogoVitae class="app-logo" />
   </header>
   <Home />
 </template>
@@ -12,19 +13,22 @@ import Home from './views/Home.vue'
 <style scoped>
 .app-header {
   padding: 20px 48px;
-  border-bottom: 1px solid var(--border);
+  background: #1a1a1a;
 }
 
-.app-nome {
-  font-size: 14px;
-  font-weight: 500;
-  letter-spacing: 0.04em;
-  color: var(--text-muted);
+.app-logo {
+  display: block;
+  height: 34px;
+  width: auto;
 }
 
 @media (max-width: 768px) {
   .app-header {
     padding: 16px 20px;
+  }
+
+  .app-logo {
+    height: 28px;
   }
 }
 </style>
