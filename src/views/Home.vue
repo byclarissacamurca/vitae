@@ -6,7 +6,6 @@ import FormExperiencias from '../components/FormExperiencias.vue'
 import FormFormacao from '../components/FormFormacao.vue'
 import FormHabilidades from '../components/FormHabilidades.vue'
 import PreviewCurriculo from '../components/PreviewCurriculo.vue'
-import BotaoExportar from '../components/BotaoExportar.vue'
 import PainelPersonalizacao from '../components/PainelPersonalizacao.vue'
 import { useCurriculoStore } from '../stores/curriculo'
 
@@ -49,9 +48,6 @@ const abaMobile = ref('editar')
     </section>
 
     <section class="preview-column" :class="{ 'oculto-mobile': abaMobile !== 'visualizar' }">
-      <div class="preview-toolbar">
-        <BotaoExportar />
-      </div>
       <PreviewCurriculo />
     </section>
   </div>
@@ -71,7 +67,7 @@ const abaMobile = ref('editar')
 .form-column {
   flex: 1 1 45%;
   padding: 48px;
-  border-right: 1px solid var(--border);
+  border-right: 1px solid var(--borda);
 }
 
 .aviso-pagina {
@@ -79,9 +75,10 @@ const abaMobile = ref('editar')
   padding: 10px 14px;
   font-size: 13px;
   line-height: 1.5;
-  color: var(--text-muted);
-  border: 1px solid var(--border);
-  border-left: 2px solid var(--text);
+  color: var(--texto-suave);
+  border: 1px solid var(--borda);
+  border-left: 2px solid var(--destaque);
+  border-radius: 8px;
 }
 
 .preview-column {
@@ -95,14 +92,6 @@ const abaMobile = ref('editar')
   overflow-y: auto;
 }
 
-.preview-toolbar {
-  width: 210mm;
-  max-width: 100%;
-  margin: 0 auto 16px;
-  display: flex;
-  justify-content: flex-end;
-}
-
 @media (max-width: 768px) {
   .home {
     flex-direction: column;
@@ -113,15 +102,15 @@ const abaMobile = ref('editar')
     position: sticky;
     top: 0;
     z-index: 1;
-    background: var(--surface);
-    border-bottom: 1px solid var(--border);
+    background: var(--bg-elevado);
+    border-bottom: 1px solid var(--borda);
   }
 
   .alternador-btn {
     flex: 1;
     font: inherit;
     font-size: 14px;
-    color: var(--text-muted);
+    color: var(--texto-suave);
     background: none;
     border: none;
     padding: 16px;
@@ -130,8 +119,8 @@ const abaMobile = ref('editar')
   }
 
   .alternador-btn.ativo {
-    color: var(--text);
-    border-bottom-color: var(--accent);
+    color: var(--texto);
+    border-bottom-color: var(--destaque);
   }
 
   .form-column,

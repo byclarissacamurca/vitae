@@ -1,17 +1,30 @@
 :root {
   --bg: #fafafa;
-  --surface: #ffffff;
-  --text: #08060d;
-  --text-muted: #6b6b6f;
-  --border: #e2e2e5;
-  --accent: #1a1a1a;
+  --bg-elevado: #ffffff;
+  --texto: #16161a;
+  --texto-suave: #6b6b70;
+  --borda: #e2e2e5;
+  --destaque: #3854d8;
+
+  /* Tokens invariantes: não mudam com o tema. Usados pela folha do currículo
+     (que representa papel impresso) e pelo cabeçalho (assinatura visual
+     sempre escura do app), independente do tema claro/escuro escolhido. */
+  --papel-bg: #ffffff;
+  --papel-texto: #16161a;
+  --papel-texto-suave: #6b6b70;
+  --papel-borda: #e2e2e5;
+
+  --cabecalho-bg: #1a1a1a;
+  --cabecalho-texto: #f5f5f6;
+  --cabecalho-texto-suave: rgba(245, 245, 246, 0.7);
+  --cabecalho-borda: rgba(245, 245, 246, 0.3);
 
   --sans: 'Inter', system-ui, 'Segoe UI', Roboto, sans-serif;
 
   font-family: var(--sans);
   font-size: 16px;
   line-height: 1.6;
-  color: var(--text);
+  color: var(--texto);
   background: var(--bg);
   color-scheme: light;
   font-synthesis: none;
@@ -20,8 +33,22 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+:root[data-theme='dark'] {
+  --bg: #121214;
+  --bg-elevado: #1c1c1f;
+  --texto: #f2f2f3;
+  --texto-suave: #9a9aa2;
+  --borda: #33333a;
+  --destaque: #7b93ff;
+  color-scheme: dark;
+}
+
 * {
   box-sizing: border-box;
+  transition:
+    background-color 200ms ease,
+    color 200ms ease,
+    border-color 200ms ease;
 }
 
 body {
@@ -35,7 +62,7 @@ h2,
 h3 {
   font-family: var(--sans);
   font-weight: 500;
-  color: var(--text);
+  color: var(--texto);
   margin: 0;
 }
 
@@ -55,10 +82,10 @@ button {
   font-size: 13px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--text-muted);
+  color: var(--texto-suave);
   margin: 0 0 24px;
   padding-top: 32px;
-  border-top: 1px solid var(--border);
+  border-top: 1px solid var(--borda);
 }
 
 .section-title:first-child {
@@ -77,24 +104,23 @@ button {
   font-size: 12px;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  color: var(--text-muted);
+  color: var(--texto-suave);
 }
 
 .field input,
 .field textarea {
   font: inherit;
-  color: var(--text);
+  color: var(--texto);
   background: transparent;
   border: none;
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid var(--borda);
   padding: 8px 0;
   outline: none;
-  transition: border-color 0.2s;
 }
 
 .field input:focus,
 .field textarea:focus {
-  border-bottom-color: var(--accent);
+  border-bottom-color: var(--destaque);
 }
 
 .field textarea {
@@ -105,29 +131,30 @@ button {
 .list-item {
   padding-bottom: 20px;
   margin-bottom: 24px;
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid var(--borda);
 }
 
 .btn {
   display: inline-block;
   font: inherit;
   font-size: 14px;
-  color: var(--text);
+  color: var(--texto);
   background: transparent;
-  border: 1px solid var(--border);
+  border: 1px solid var(--borda);
+  border-radius: 8px;
   padding: 8px 18px;
   cursor: pointer;
-  transition: border-color 0.2s;
 }
 
 .btn:hover {
-  border-color: var(--accent);
+  border-color: var(--destaque);
+  color: var(--destaque);
 }
 
 .btn-text {
   font: inherit;
   font-size: 13px;
-  color: var(--text-muted);
+  color: var(--texto-suave);
   background: none;
   border: none;
   padding: 0;
@@ -137,13 +164,13 @@ button {
 }
 
 .btn-text:hover {
-  color: var(--text);
+  color: var(--texto);
 }
 
 .btn:disabled,
 .btn-text:disabled {
   cursor: not-allowed;
-  color: var(--border);
-  border-color: var(--border);
+  color: var(--borda);
+  border-color: var(--borda);
   text-decoration: none;
 }

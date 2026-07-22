@@ -124,7 +124,9 @@ const EXPLICACAO_MODO = {
 <style scoped>
 .painel {
   margin-bottom: 24px;
-  border: 1px solid var(--border);
+  border: 1px solid var(--borda);
+  border-radius: 10px;
+  overflow: hidden;
 }
 
 .painel summary {
@@ -132,7 +134,7 @@ const EXPLICACAO_MODO = {
   padding: 12px 16px;
   font-size: 13px;
   font-weight: 500;
-  color: var(--text);
+  color: var(--texto);
   list-style: none;
 }
 
@@ -142,7 +144,7 @@ const EXPLICACAO_MODO = {
 
 .painel summary::before {
   content: '+ ';
-  color: var(--text-muted);
+  color: var(--texto-suave);
 }
 
 .painel[open] summary::before {
@@ -154,7 +156,7 @@ const EXPLICACAO_MODO = {
   display: flex;
   flex-direction: column;
   gap: 20px;
-  border-top: 1px solid var(--border);
+  border-top: 1px solid var(--borda);
 }
 
 .painel-grupo {
@@ -167,23 +169,23 @@ const EXPLICACAO_MODO = {
   font-size: 12px;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  color: var(--text-muted);
+  color: var(--texto-suave);
 }
 
 .painel-ajuda {
   margin: 0;
   font-size: 12.5px;
   line-height: 1.5;
-  color: var(--text-muted);
+  color: var(--texto-suave);
 }
 
 .painel-conteudo select {
   font: inherit;
   font-size: 14px;
-  color: var(--text);
+  color: var(--texto);
   background: transparent;
   border: none;
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid var(--borda);
   padding: 6px 0;
 }
 
@@ -195,16 +197,17 @@ const EXPLICACAO_MODO = {
 .opcoes-segmentadas button {
   font: inherit;
   font-size: 13px;
-  color: var(--text-muted);
+  color: var(--texto-suave);
   background: transparent;
-  border: 1px solid var(--border);
+  border: 1px solid var(--borda);
+  border-radius: 8px;
   padding: 6px 14px;
   cursor: pointer;
 }
 
 .opcoes-segmentadas button.ativo {
-  color: var(--text);
-  border-color: var(--text);
+  color: var(--texto);
+  border-color: var(--texto);
 }
 
 .paleta-cores {
@@ -217,12 +220,13 @@ const EXPLICACAO_MODO = {
   width: 22px;
   height: 22px;
   padding: 0;
-  border: 1px solid var(--border);
+  border: 1px solid var(--borda);
+  border-radius: 6px;
   cursor: pointer;
 }
 
 .swatch.ativo {
-  outline: 2px solid var(--text);
+  outline: 2px solid var(--texto);
   outline-offset: 2px;
 }
 
@@ -230,7 +234,8 @@ const EXPLICACAO_MODO = {
   width: 22px;
   height: 22px;
   padding: 0;
-  border: 1px solid var(--border);
+  border: 1px solid var(--borda);
+  border-radius: 6px;
   background: none;
   cursor: pointer;
 }

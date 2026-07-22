@@ -88,7 +88,7 @@ function adicionarItem(indiceCategoria) {
 .categoria {
   padding-bottom: 20px;
   margin-bottom: 20px;
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid var(--borda);
 }
 
 .categoria-cabecalho {
@@ -103,10 +103,10 @@ function adicionarItem(indiceCategoria) {
   font: inherit;
   font-size: 13px;
   font-weight: 500;
-  color: var(--text);
+  color: var(--texto);
   background: transparent;
   border: none;
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid var(--borda);
   padding: 4px 0;
 }
 
@@ -119,9 +119,10 @@ function adicionarItem(indiceCategoria) {
 .btn-icone {
   font: inherit;
   font-size: 13px;
-  color: var(--text-muted);
+  color: var(--texto-suave);
   background: none;
-  border: 1px solid var(--border);
+  border: 1px solid var(--borda);
+  border-radius: 8px;
   padding: 2px 8px;
   cursor: pointer;
 }
@@ -143,14 +144,15 @@ function adicionarItem(indiceCategoria) {
   gap: 6px;
   font-size: 13px;
   padding: 4px 10px;
-  border: 1px solid var(--border);
-  color: var(--text);
+  border: 1px solid var(--borda);
+  border-radius: 8px;
+  color: var(--texto);
 }
 
 .tag-remove {
   background: none;
   border: none;
-  color: var(--text-muted);
+  color: var(--texto-suave);
   cursor: pointer;
   font-size: 14px;
   line-height: 1;
@@ -158,6 +160,6 @@ function adicionarItem(indiceCategoria) {
 }
 
 .tag-remove:hover {
-  color: var(--text);
+  color: var(--texto);
 }
 </style>

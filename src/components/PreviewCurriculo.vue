@@ -100,8 +100,8 @@ onBeforeUnmount(() => {
   margin: 0 auto;
   box-sizing: border-box;
   padding: 20mm 18mm;
-  background: #ffffff;
-  color: var(--text);
+  background: var(--papel-bg);
+  color: var(--papel-texto);
   overflow-wrap: anywhere;
   word-break: break-word;
   box-shadow:
@@ -128,20 +128,20 @@ onBeforeUnmount(() => {
 
 .titulo {
   font-size: 1.0714em;
-  color: var(--text-muted);
+  color: var(--papel-texto-suave);
   margin: 0 0 12px;
 }
 
 .contatos {
   font-size: 0.8929em;
-  color: var(--text-muted);
+  color: var(--papel-texto-suave);
   margin: 0;
 }
 
 .secao {
   margin-top: calc(32px * var(--fator-espaco, 1));
   padding-top: calc(20px * var(--fator-espaco, 1));
-  border-top: 1px solid var(--cor-destaque, var(--accent));
+  border-top: 1px solid var(--cor-destaque, var(--papel-texto));
 }
 
 .titulo-secao {
@@ -149,7 +149,7 @@ onBeforeUnmount(() => {
   font-weight: 500;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--text-muted);
+  color: var(--papel-texto-suave);
   margin: 0 0 16px;
 }
 
@@ -181,13 +181,13 @@ onBeforeUnmount(() => {
 
 .periodo {
   font-size: 0.8621em;
-  color: var(--text-muted);
+  color: var(--papel-texto-suave);
   white-space: nowrap;
 }
 
 .subtitulo-item {
   font-size: 0.9643em;
-  color: var(--text-muted);
+  color: var(--papel-texto-suave);
   margin: 2px 0 6px;
 }
 
