@@ -1,6 +1,8 @@
 # Vitae - Gerador de Currículo
 
 <img width="1329" height="631" alt="image" src="https://github.com/user-attachments/assets/c9df42a7-3ae7-480e-b30c-18cefed6a408" />
+<img width="1329" height="631" alt="image" src="https://github.com/user-attachments/assets/05634841-de51-48c3-90d3-1bed8e24045d" />
+
 
 
 Gerador de currículo com preview ao vivo e exportação em PDF, em estilo minimalista
