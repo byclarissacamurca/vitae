@@ -18,7 +18,7 @@ import LogoVitae from './components/LogoVitae.vue'
 
 .app-logo {
   display: block;
-  height: 34px;
+  height: 40px;
   width: auto;
 }
 
