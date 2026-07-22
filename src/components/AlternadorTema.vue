@@ -57,15 +57,15 @@ function alternar() {
   width: 32px;
   height: 32px;
   padding: 0;
-  color: var(--cabecalho-texto-suave);
+  color: var(--texto-suave);
   background: none;
-  border: 1px solid var(--cabecalho-borda);
+  border: 1px solid var(--borda);
   border-radius: 8px;
   cursor: pointer;
 }
 
 .alternador-tema:hover {
-  color: var(--cabecalho-texto);
-  border-color: var(--cabecalho-texto);
+  color: var(--destaque);
+  border-color: var(--destaque);
 }
 </style>

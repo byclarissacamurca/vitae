@@ -12,15 +12,16 @@ const { exportarPdf } = useExportarPdf()
 .btn-exportar {
   font: inherit;
   font-size: 13px;
-  color: var(--cabecalho-texto);
+  color: var(--texto);
   background: none;
-  border: 1px solid var(--cabecalho-borda);
+  border: 1px solid var(--borda);
   border-radius: 8px;
   padding: 7px 16px;
   cursor: pointer;
 }
 
 .btn-exportar:hover {
-  border-color: var(--cabecalho-texto);
+  border-color: var(--destaque);
+  color: var(--destaque);
 }
 </style>

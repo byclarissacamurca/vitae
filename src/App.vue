@@ -1,13 +1,20 @@
 <script setup>
+import { computed } from 'vue'
 import Home from './views/Home.vue'
-import LogoVitae from './components/LogoVitae.vue'
+import LogoVitaeBranco from './components/LogoVitaeBranco.vue'
+import LogoVitaePreto from './components/LogoVitaePreto.vue'
 import AlternadorTema from './components/AlternadorTema.vue'
 import BotaoExportar from './components/BotaoExportar.vue'
+import { useTema } from './composables/useTema'
+
+const { tema } = useTema()
+
+const logoAtual = computed(() => (tema.value === 'dark' ? LogoVitaeBranco : LogoVitaePreto))
 </script>
 
 <template>
   <header class="app-header">
-    <LogoVitae class="app-logo" />
+    <component :is="logoAtual" class="app-logo" />
     <div class="app-acoes">
       <AlternadorTema />
       <BotaoExportar />
@@ -23,7 +30,8 @@ import BotaoExportar from './components/BotaoExportar.vue'
   justify-content: space-between;
   gap: 16px;
   padding: 20px 48px;
-  background: var(--cabecalho-bg);
+  background: var(--bg-elevado);
+  border-bottom: 1px solid var(--borda);
 }
 
 .app-logo {

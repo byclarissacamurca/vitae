@@ -93,6 +93,9 @@ onBeforeUnmount(() => {
 </template>
 
 <style scoped>
+/* O currículo representa uma folha de papel impressa e vira PDF: as cores
+   abaixo são FIXAS de propósito e não usam variáveis de tema (--texto,
+   --texto-suave, --bg), para nunca ficarem ilegíveis no tema escuro. */
 .folha {
   width: 210mm;
   max-width: 100%;
@@ -100,8 +103,8 @@ onBeforeUnmount(() => {
   margin: 0 auto;
   box-sizing: border-box;
   padding: 20mm 18mm;
-  background: var(--papel-bg);
-  color: var(--papel-texto);
+  background: #fff;
+  color: #444;
   overflow-wrap: anywhere;
   word-break: break-word;
   box-shadow:
@@ -114,6 +117,7 @@ onBeforeUnmount(() => {
 }
 
 .cabecalho h1 {
+  color: #111;
   font-size: 2.2857em;
   font-weight: 600;
   letter-spacing: -0.02em;
@@ -128,20 +132,20 @@ onBeforeUnmount(() => {
 
 .titulo {
   font-size: 1.0714em;
-  color: var(--papel-texto-suave);
+  color: #666;
   margin: 0 0 12px;
 }
 
 .contatos {
   font-size: 0.8929em;
-  color: var(--papel-texto-suave);
+  color: #666;
   margin: 0;
 }
 
 .secao {
   margin-top: calc(32px * var(--fator-espaco, 1));
   padding-top: calc(20px * var(--fator-espaco, 1));
-  border-top: 1px solid var(--cor-destaque, var(--papel-texto));
+  border-top: 1px solid var(--cor-destaque, #111);
 }
 
 .titulo-secao {
@@ -149,7 +153,7 @@ onBeforeUnmount(() => {
   font-weight: 500;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--papel-texto-suave);
+  color: #666;
   margin: 0 0 16px;
 }
 
@@ -159,6 +163,7 @@ onBeforeUnmount(() => {
 
 .resumo-texto {
   font-size: 1em;
+  color: #444;
   line-height: calc(1.7 * var(--fator-espaco, 1));
   white-space: pre-line;
 }
@@ -176,18 +181,19 @@ onBeforeUnmount(() => {
   justify-content: space-between;
   align-items: baseline;
   gap: 12px;
+  color: #111;
   font-size: 1.0357em;
 }
 
 .periodo {
   font-size: 0.8621em;
-  color: var(--papel-texto-suave);
+  color: #666;
   white-space: nowrap;
 }
 
 .subtitulo-item {
   font-size: 0.9643em;
-  color: var(--papel-texto-suave);
+  color: #666;
   margin: 2px 0 6px;
 }
 
@@ -196,6 +202,7 @@ onBeforeUnmount(() => {
   padding: 0;
   list-style: none;
   font-size: 0.9643em;
+  color: #444;
   line-height: calc(1.6 * var(--fator-espaco, 1));
 }
 
@@ -216,6 +223,7 @@ onBeforeUnmount(() => {
 
 .habilidades-linha {
   font-size: 0.9643em;
+  color: #444;
   line-height: calc(1.8 * var(--fator-espaco, 1));
   margin: 0;
 }

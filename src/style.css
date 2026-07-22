@@ -6,19 +6,6 @@
   --borda: #e5e5e5;
   --destaque: #3854d8;
 
-  /* Tokens invariantes: não mudam com o tema. Usados pela folha do currículo
-     (que representa papel impresso) e pelo cabeçalho (assinatura visual
-     sempre escura do app), independente do tema claro/escuro escolhido. */
-  --papel-bg: #ffffff;
-  --papel-texto: #16161a;
-  --papel-texto-suave: #6b6b70;
-  --papel-borda: #e2e2e5;
-
-  --cabecalho-bg: #1a1a1a;
-  --cabecalho-texto: #f5f5f6;
-  --cabecalho-texto-suave: rgba(245, 245, 246, 0.7);
-  --cabecalho-borda: rgba(245, 245, 246, 0.3);
-
   --sans: 'Inter', system-ui, 'Segoe UI', Roboto, sans-serif;
 
   font-family: var(--sans);
