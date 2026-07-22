@@ -18,7 +18,7 @@ tempo real, um currículo de uma página se montando à direita, pronto para bai
 - [Vue 3](https://vuejs.org/) (Composition API, `<script setup>`)
 - [Vite](https://vite.dev/)
 - [Pinia](https://pinia.vuejs.org/) — estado global do currículo
-- [html2pdf.js](https://github.com/eKoopmans/html2pdf.js) — exportação em PDF
+- [pdfmake](https://github.com/bpampuch/pdfmake) — exportação em PDF com texto real (selecionável e legível por ATS)
 - [@vueuse/core](https://vueuse.org/) — persistência em localStorage
 - Fonte [Inter](https://rsms.me/inter/)
 
@@ -28,12 +28,29 @@ tempo real, um currículo de uma página se montando à direita, pronto para bai
 - Listas dinâmicas: adicionar/remover experiências e formações
 - Habilidades como tags, adicionadas ao pressionar Enter
 - Preview ao vivo de uma folha A4, atualizado a cada tecla digitada
-- Exportação em PDF limpo (só o currículo, sem UI do formulário)
+- Habilidades organizadas por categoria (ex: "Front-end: Vue.js • React"), com
+  fallback para lista simples se nenhuma categoria for criada
+- Exportação em PDF com texto real (selecionável, legível por ATS), download
+  direto sem passar pela caixa de impressão do navegador
+- Modo ATS (padrão, uma coluna, títulos padrão, sem cor no texto) e Modo Visual
+  (libera cor de destaque e fonte de exibição no nome)
+- Painel de personalização: fonte, cor de destaque, tamanho da fonte e espaçamento
 - Persistência automática no localStorage — recarregar a página não perde os dados
 - Responsivo: colunas lado a lado no desktop (preview fixo ao rolar o formulário) e
   alternador "Editar / Visualizar" no mobile
 - "Melhorar resumo com IA": reescreve o resumo profissional via Claude, chamado
   por uma função serverless (a chave de API nunca fica no front-end)
+
+## Sobre as fontes no PDF exportado
+
+Para o texto do PDF ser real (selecionável e legível por ATS), a fonte precisa
+estar incorporada no arquivo — e fontes proprietárias como Arial, Calibri e Times
+New Roman não podem ser embutidas sem licença. Por isso, no PDF exportado (não no
+preview em tela, que usa a fonte real do seu sistema):
+
+- Inter/Arial/Helvetica/Calibri → renderizam como **Roboto** (embutida, licença livre)
+- Georgia/Times New Roman → renderizam como **Times** (fonte padrão do PDF, sem
+  necessidade de incorporação)
 
 ## Como rodar localmente
 

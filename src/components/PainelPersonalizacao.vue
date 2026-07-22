@@ -1,16 +1,8 @@
 <script setup>
 import { useCurriculoStore } from '../stores/curriculo'
+import { FONTES } from '../utils/formatarCurriculo'
 
 const store = useCurriculoStore()
-
-const FONTES = [
-  { nome: 'Inter', valor: "'Inter', system-ui, 'Segoe UI', Roboto, sans-serif" },
-  { nome: 'Arial', valor: 'Arial, Helvetica, sans-serif' },
-  { nome: 'Helvetica', valor: 'Helvetica, Arial, sans-serif' },
-  { nome: 'Calibri', valor: "Calibri, Candara, Segoe, 'Segoe UI', Optima, sans-serif" },
-  { nome: 'Georgia', valor: "Georgia, 'Times New Roman', serif" },
-  { nome: 'Times New Roman', valor: "'Times New Roman', Times, serif" },
-]
 
 const PALETA_CORES = [
   { nome: 'Grafite', valor: '#1a1a1a' },

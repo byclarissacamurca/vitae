@@ -1,14 +1,18 @@
 <script setup>
 import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
 import { useCurriculoStore } from '../stores/curriculo'
+import {
+  TAMANHOS_FONTE_PX,
+  FATORES_ESPACAMENTO,
+  montarContatos,
+  linhasDescricao,
+  agruparHabilidades,
+} from '../utils/formatarCurriculo'
 
 const store = useCurriculoStore()
 const folhaRef = ref(null)
 
 const ALTURA_A4_PX = (297 * 96) / 25.4
-
-const TAMANHOS_FONTE_PX = { pequeno: 13, medio: 14, grande: 15.5 }
-const FATORES_ESPACAMENTO = { compacto: 0.75, normal: 1, arejado: 1.25 }
 
 const estiloFolha = computed(() => ({
   fontFamily: store.preferencias.fonte,
@@ -17,27 +21,8 @@ const estiloFolha = computed(() => ({
   '--fator-espaco': FATORES_ESPACAMENTO[store.preferencias.espacamento] ?? 1,
 }))
 
-function formatarLink(url) {
-  if (!url) return ''
-  return url
-    .trim()
-    .replace(/^https?:\/\//i, '')
-    .replace(/^www\./i, '')
-    .replace(/\/+$/, '')
-}
-
-const contatos = computed(() => {
-  const { email, telefone, cidade, linkedin, github } = store.dadosPessoais
-  return [email, telefone, cidade, formatarLink(linkedin), formatarLink(github)].filter(Boolean)
-})
-
-function linhasDescricao(texto) {
-  if (!texto) return []
-  return texto
-    .split('\n')
-    .map((linha) => linha.trim().replace(/^[-•*]\s*/, ''))
-    .filter(Boolean)
-}
+const contatos = computed(() => montarContatos(store.dadosPessoais))
+const habilidadesLinhas = computed(() => agruparHabilidades(store.habilidades))
 
 let observer
 
@@ -99,9 +84,11 @@ onBeforeUnmount(() => {
       </div>
     </section>
 
-    <section v-if="store.habilidades.length" class="secao">
+    <section v-if="habilidadesLinhas.length" class="secao">
       <h2 class="titulo-secao">Habilidades</h2>
-      <p class="habilidades-lista">{{ store.habilidades.join(' • ') }}</p>
+      <p v-for="(linha, i) in habilidadesLinhas" :key="i" class="habilidades-linha">
+        <strong v-if="linha.categoria">{{ linha.categoria }}: </strong>{{ linha.itens.join(' • ') }}
+      </p>
     </section>
   </article>
 </template>
@@ -156,8 +143,6 @@ onBeforeUnmount(() => {
   margin-top: calc(32px * var(--fator-espaco, 1));
   padding-top: calc(20px * var(--fator-espaco, 1));
   border-top: 1px solid var(--cor-destaque, var(--accent));
-  break-inside: avoid;
-  page-break-inside: avoid;
 }
 
 .titulo-secao {
@@ -181,8 +166,6 @@ onBeforeUnmount(() => {
 
 .item {
   margin-bottom: calc(18px * var(--fator-espaco, 1));
-  break-inside: avoid;
-  page-break-inside: avoid;
 }
 
 .item:last-child {
@@ -232,8 +215,13 @@ onBeforeUnmount(() => {
   margin-top: 2px;
 }
 
-.habilidades-lista {
+.habilidades-linha {
   font-size: 0.9643em;
   line-height: calc(1.8 * var(--fator-espaco, 1));
+  margin: 0;
+}
+
+.habilidades-linha + .habilidades-linha {
+  margin-top: 4px;
 }
 </style>
