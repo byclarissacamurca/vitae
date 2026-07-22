@@ -1,9 +1,9 @@
 :root {
   --bg: #fafafa;
   --bg-elevado: #ffffff;
-  --texto: #16161a;
+  --texto: #111111;
   --texto-suave: #6b6b70;
-  --borda: #e2e2e5;
+  --borda: #e5e5e5;
   --destaque: #3854d8;
 
   /* Tokens invariantes: não mudam com o tema. Usados pela folha do currículo
@@ -33,12 +33,12 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-:root[data-theme='dark'] {
-  --bg: #121214;
-  --bg-elevado: #1c1c1f;
-  --texto: #f2f2f3;
+[data-theme='dark'] {
+  --bg: #0f0f0f;
+  --bg-elevado: #1a1a1a;
+  --texto: #f0f0f0;
   --texto-suave: #9a9aa2;
-  --borda: #33333a;
+  --borda: #2a2a2a;
   --destaque: #7b93ff;
   color-scheme: dark;
 }
@@ -93,10 +93,12 @@ button {
 }
 
 .field input,
-.field textarea {
+.field textarea,
+.field select,
+select {
   font: inherit;
   color: var(--texto);
-  background: transparent;
+  background: var(--bg-elevado);
   border: none;
   border-bottom: 1px solid var(--borda);
   padding: 8px 0;
@@ -104,7 +106,9 @@ button {
 }
 
 .field input:focus,
-.field textarea:focus {
+.field textarea:focus,
+.field select:focus,
+select:focus {
   border-bottom-color: var(--destaque);
 }
 

@@ -9,7 +9,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@anthropic-ai/sdk": "^0.112.4",
     "@vueuse/core": "^14.3.0",
     "pdfmake": "^0.3.11",
     "pinia": "^4.0.2",
