@@ -7,6 +7,16 @@ const folhaRef = ref(null)
 
 const ALTURA_A4_PX = (297 * 96) / 25.4
 
+const TAMANHOS_FONTE_PX = { pequeno: 13, medio: 14, grande: 15.5 }
+const FATORES_ESPACAMENTO = { compacto: 0.75, normal: 1, arejado: 1.25 }
+
+const estiloFolha = computed(() => ({
+  fontFamily: store.preferencias.fonte,
+  fontSize: `${TAMANHOS_FONTE_PX[store.preferencias.tamanhoFonte] ?? 14}px`,
+  '--cor-destaque': store.preferencias.corDestaque,
+  '--fator-espaco': FATORES_ESPACAMENTO[store.preferencias.espacamento] ?? 1,
+}))
+
 function formatarLink(url) {
   if (!url) return ''
   return url
@@ -46,7 +56,13 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <article id="folha-curriculo" ref="folhaRef" class="folha">
+  <article
+    id="folha-curriculo"
+    ref="folhaRef"
+    class="folha"
+    :class="{ 'modo-visual': store.preferencias.modo === 'visual' }"
+    :style="estiloFolha"
+  >
     <header class="cabecalho">
       <h1>{{ store.dadosPessoais.nome || 'Seu nome' }}</h1>
       <p v-if="store.dadosPessoais.titulo" class="titulo">{{ store.dadosPessoais.titulo }}</p>
@@ -59,7 +75,7 @@ onBeforeUnmount(() => {
     </section>
 
     <section v-if="store.experiencias.length" class="secao">
-      <h2 class="titulo-secao">Experiência</h2>
+      <h2 class="titulo-secao">Experiência Profissional</h2>
       <div v-for="(experiencia, index) in store.experiencias" :key="index" class="item">
         <div class="item-cabecalho">
           <strong>{{ experiencia.cargo }}</strong>
@@ -73,7 +89,7 @@ onBeforeUnmount(() => {
     </section>
 
     <section v-if="store.formacao.length" class="secao">
-      <h2 class="titulo-secao">Formação</h2>
+      <h2 class="titulo-secao">Formação Acadêmica</h2>
       <div v-for="(item, index) in store.formacao" :key="index" class="item">
         <div class="item-cabecalho">
           <strong>{{ item.curso }}</strong>
@@ -108,38 +124,44 @@ onBeforeUnmount(() => {
 }
 
 .cabecalho {
-  margin-bottom: 8px;
+  margin-bottom: calc(8px * var(--fator-espaco, 1));
 }
 
 .cabecalho h1 {
-  font-size: 32px;
+  font-size: 2.2857em;
   font-weight: 600;
   letter-spacing: -0.02em;
   margin: 0 0 4px;
 }
 
+.modo-visual .cabecalho h1 {
+  color: var(--cor-destaque);
+  font-family: Georgia, 'Times New Roman', serif;
+  font-style: italic;
+}
+
 .titulo {
-  font-size: 15px;
+  font-size: 1.0714em;
   color: var(--text-muted);
   margin: 0 0 12px;
 }
 
 .contatos {
-  font-size: 12.5px;
+  font-size: 0.8929em;
   color: var(--text-muted);
   margin: 0;
 }
 
 .secao {
-  margin-top: 32px;
-  padding-top: 20px;
-  border-top: 1px solid var(--border);
+  margin-top: calc(32px * var(--fator-espaco, 1));
+  padding-top: calc(20px * var(--fator-espaco, 1));
+  border-top: 1px solid var(--cor-destaque, var(--accent));
   break-inside: avoid;
   page-break-inside: avoid;
 }
 
 .titulo-secao {
-  font-size: 12px;
+  font-size: 0.8571em;
   font-weight: 500;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -147,14 +169,18 @@ onBeforeUnmount(() => {
   margin: 0 0 16px;
 }
 
+.modo-visual .titulo-secao {
+  color: var(--cor-destaque);
+}
+
 .resumo-texto {
-  font-size: 14px;
-  line-height: 1.7;
+  font-size: 1em;
+  line-height: calc(1.7 * var(--fator-espaco, 1));
   white-space: pre-line;
 }
 
 .item {
-  margin-bottom: 18px;
+  margin-bottom: calc(18px * var(--fator-espaco, 1));
   break-inside: avoid;
   page-break-inside: avoid;
 }
@@ -168,17 +194,17 @@ onBeforeUnmount(() => {
   justify-content: space-between;
   align-items: baseline;
   gap: 12px;
-  font-size: 14.5px;
+  font-size: 1.0357em;
 }
 
 .periodo {
-  font-size: 12.5px;
+  font-size: 0.8621em;
   color: var(--text-muted);
   white-space: nowrap;
 }
 
 .subtitulo-item {
-  font-size: 13.5px;
+  font-size: 0.9643em;
   color: var(--text-muted);
   margin: 2px 0 6px;
 }
@@ -187,8 +213,8 @@ onBeforeUnmount(() => {
   margin: 6px 0 0;
   padding: 0;
   list-style: none;
-  font-size: 13.5px;
-  line-height: 1.6;
+  font-size: 0.9643em;
+  line-height: calc(1.6 * var(--fator-espaco, 1));
 }
 
 .descricao li {
@@ -207,7 +233,7 @@ onBeforeUnmount(() => {
 }
 
 .habilidades-lista {
-  font-size: 13.5px;
-  line-height: 1.8;
+  font-size: 0.9643em;
+  line-height: calc(1.8 * var(--fator-espaco, 1));
 }
 </style>

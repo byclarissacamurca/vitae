@@ -23,6 +23,14 @@ export const useCurriculoStore = defineStore('curriculo', () => {
 
   const habilidades = useLocalStorage('curriculo-habilidades', [])
 
+  const preferencias = useLocalStorage('curriculo-preferencias', {
+    modo: 'ats',
+    fonte: "'Inter', system-ui, 'Segoe UI', Roboto, sans-serif",
+    corDestaque: '#1a1a1a',
+    tamanhoFonte: 'medio',
+    espacamento: 'normal',
+  })
+
   function atualizarDadosPessoais(dados) {
     Object.assign(dadosPessoais.value, dados)
   }
@@ -68,6 +76,7 @@ export const useCurriculoStore = defineStore('curriculo', () => {
     experiencias,
     formacao,
     habilidades,
+    preferencias,
     excedeUmaPagina,
     atualizarDadosPessoais,
     atualizarResumo,
