@@ -1,17 +1,52 @@
 <script setup>
-import { computed } from 'vue'
+import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
 import { useCurriculoStore } from '../stores/curriculo'
 
 const store = useCurriculoStore()
+const folhaRef = ref(null)
+
+const ALTURA_A4_PX = (297 * 96) / 25.4
+
+function formatarLink(url) {
+  if (!url) return ''
+  return url
+    .trim()
+    .replace(/^https?:\/\//i, '')
+    .replace(/^www\./i, '')
+    .replace(/\/+$/, '')
+}
 
 const contatos = computed(() => {
   const { email, telefone, cidade, linkedin, github } = store.dadosPessoais
-  return [email, telefone, cidade, linkedin, github].filter(Boolean)
+  return [email, telefone, cidade, formatarLink(linkedin), formatarLink(github)].filter(Boolean)
+})
+
+function linhasDescricao(texto) {
+  if (!texto) return []
+  return texto
+    .split('\n')
+    .map((linha) => linha.trim().replace(/^[-•*]\s*/, ''))
+    .filter(Boolean)
+}
+
+let observer
+
+onMounted(() => {
+  observer = new ResizeObserver(() => {
+    if (folhaRef.value) {
+      store.definirExcedeUmaPagina(folhaRef.value.scrollHeight > ALTURA_A4_PX + 2)
+    }
+  })
+  observer.observe(folhaRef.value)
+})
+
+onBeforeUnmount(() => {
+  observer?.disconnect()
 })
 </script>
 
 <template>
-  <article id="folha-curriculo" class="folha">
+  <article id="folha-curriculo" ref="folhaRef" class="folha">
     <header class="cabecalho">
       <h1>{{ store.dadosPessoais.nome || 'Seu nome' }}</h1>
       <p v-if="store.dadosPessoais.titulo" class="titulo">{{ store.dadosPessoais.titulo }}</p>
@@ -31,7 +66,9 @@ const contatos = computed(() => {
           <span class="periodo">{{ experiencia.periodo }}</span>
         </div>
         <p class="subtitulo-item">{{ experiencia.empresa }}</p>
-        <p class="descricao">{{ experiencia.descricao }}</p>
+        <ul v-if="linhasDescricao(experiencia.descricao).length" class="descricao">
+          <li v-for="(linha, i) in linhasDescricao(experiencia.descricao)" :key="i">{{ linha }}</li>
+        </ul>
       </div>
     </section>
 
@@ -63,6 +100,8 @@ const contatos = computed(() => {
   padding: 20mm 18mm;
   background: #ffffff;
   color: var(--text);
+  overflow-wrap: anywhere;
+  word-break: break-word;
   box-shadow:
     0 1px 3px rgba(0, 0, 0, 0.08),
     0 1px 2px rgba(0, 0, 0, 0.06);
@@ -95,6 +134,8 @@ const contatos = computed(() => {
   margin-top: 32px;
   padding-top: 20px;
   border-top: 1px solid var(--border);
+  break-inside: avoid;
+  page-break-inside: avoid;
 }
 
 .titulo-secao {
@@ -114,6 +155,8 @@ const contatos = computed(() => {
 
 .item {
   margin-bottom: 18px;
+  break-inside: avoid;
+  page-break-inside: avoid;
 }
 
 .item:last-child {
@@ -141,9 +184,26 @@ const contatos = computed(() => {
 }
 
 .descricao {
+  margin: 6px 0 0;
+  padding: 0;
+  list-style: none;
   font-size: 13.5px;
   line-height: 1.6;
-  white-space: pre-line;
+}
+
+.descricao li {
+  position: relative;
+  padding-left: 14px;
+}
+
+.descricao li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+}
+
+.descricao li + li {
+  margin-top: 2px;
 }
 
 .habilidades-lista {

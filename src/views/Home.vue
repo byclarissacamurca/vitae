@@ -7,7 +7,9 @@ import FormFormacao from '../components/FormFormacao.vue'
 import FormHabilidades from '../components/FormHabilidades.vue'
 import PreviewCurriculo from '../components/PreviewCurriculo.vue'
 import BotaoExportar from '../components/BotaoExportar.vue'
+import { useCurriculoStore } from '../stores/curriculo'
 
+const store = useCurriculoStore()
 const abaMobile = ref('editar')
 </script>
 
@@ -33,6 +35,10 @@ const abaMobile = ref('editar')
     </div>
 
     <section class="form-column" :class="{ 'oculto-mobile': abaMobile !== 'editar' }">
+      <p v-if="store.excedeUmaPagina" class="aviso-pagina">
+        Seu currículo passou de 1 página. Currículos de uma página costumam ser lidos
+        até o fim com mais frequência — considere cortar algum trecho.
+      </p>
       <FormDadosPessoais />
       <FormResumo />
       <FormExperiencias />
@@ -64,6 +70,16 @@ const abaMobile = ref('editar')
   flex: 1 1 45%;
   padding: 48px;
   border-right: 1px solid var(--border);
+}
+
+.aviso-pagina {
+  margin: 0 0 24px;
+  padding: 10px 14px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+  border-left: 2px solid var(--text);
 }
 
 .preview-column {

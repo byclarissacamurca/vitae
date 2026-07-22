@@ -1,7 +1,10 @@
+import { ref } from 'vue'
 import { defineStore } from 'pinia'
 import { useLocalStorage } from '@vueuse/core'
 
 export const useCurriculoStore = defineStore('curriculo', () => {
+  const excedeUmaPagina = ref(false)
+
   const dadosPessoais = useLocalStorage('curriculo-dados-pessoais', {
     nome: '',
     titulo: '',
@@ -55,12 +58,17 @@ export const useCurriculoStore = defineStore('curriculo', () => {
     habilidades.value.splice(index, 1)
   }
 
+  function definirExcedeUmaPagina(valor) {
+    excedeUmaPagina.value = valor
+  }
+
   return {
     dadosPessoais,
     resumo,
     experiencias,
     formacao,
     habilidades,
+    excedeUmaPagina,
     atualizarDadosPessoais,
     atualizarResumo,
     adicionarExperiencia,
@@ -69,5 +77,6 @@ export const useCurriculoStore = defineStore('curriculo', () => {
     removerFormacao,
     adicionarHabilidade,
     removerHabilidade,
+    definirExcedeUmaPagina,
   }
 })
