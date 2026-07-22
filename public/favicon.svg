@@ -8,10 +8,10 @@
 
     @media (prefers-color-scheme: dark) {
       #light-icon {
-        display: none;
+        display: inline;
       }
       #dark-icon {
-        display: inline;
+        display: none;
       }
     }
   </style><g id="light-icon"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="1000" height="1000"><g clip-path="url(#SvgjsClipPath1125)"><rect width="1000" height="1000" fill="#000000"></rect><g transform="matrix(3.3003300330033003,0,0,3.3003300330033003,0,19.801980198019805)"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" id="Layer_1" x="0px" y="0px" viewBox="0 0 303 291" style="enable-background:new 0 0 303 291;" xml:space="preserve" width="303" height="291"><style type="text/css">
