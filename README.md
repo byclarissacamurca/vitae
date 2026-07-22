@@ -1,5 +1,8 @@
 # Vitae - Gerador de Currículo
 
+<img width="1329" height="631" alt="image" src="https://github.com/user-attachments/assets/c9df42a7-3ae7-480e-b30c-18cefed6a408" />
+
+
 Gerador de currículo com preview ao vivo e exportação em PDF, em estilo minimalista
 tipográfico: muito espaço em branco, tipografia como protagonista, sem cores
 vibrantes nem sombras pesadas. Você preenche um formulário à esquerda e vê, em
