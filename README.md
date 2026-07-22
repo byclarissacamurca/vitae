@@ -15,8 +15,11 @@ tempo real, um currículo de uma página se montando à direita, pronto para bai
 
 ## Deploy
 
-<!-- TODO: substituir pelo link real após o deploy na Vercel -->
-🔗 _https://vitae-gerador-curriculo.vercel.app/_
+🔗 [byclarissacamurca.github.io/vitae](https://byclarissacamurca.github.io/vitae/)
+
+Publicado via GitHub Pages, com build e deploy automáticos a cada push em
+`master` (veja `.github/workflows/deploy-pages.yml`). O app é 100% estático
+(sem função serverless), então não depende de nenhum serviço além do GitHub.
 
 ## Stack
 
